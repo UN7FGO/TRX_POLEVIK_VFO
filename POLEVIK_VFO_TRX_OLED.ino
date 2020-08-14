@@ -74,8 +74,7 @@ float KOEF_V;
 /* =================================================== */
 void setup() {
   Serial.begin(9600);
-  Serial.println("Setup begin");
-  
+ 
   // определяем режимы работы цифровых входов
   pinMode (ENC_CLK_PIN,INPUT_PULLUP);
   pinMode (ENC_DT_PIN,INPUT_PULLUP);
@@ -86,7 +85,6 @@ void setup() {
   // "устанавливаем" энкодер
   encoder.setPosition(0);
   
-  Serial.println("Setup 1");
   // расчитываем коэфициент для делителя напряжения питания
   KOEF_V = ( 50 * ( VOLT_R1 + VOLT_R2 ) ) / (1023 * VOLT_R2 );
   
@@ -126,7 +124,6 @@ void loop() {
   // Если частота у нас изменилась, 
   // то обновляем ее значение на индикаторе и на синтезаторе
   if ( current_freq != old_freq ) {
-    Serial.println(current_freq);
     si5351.set_freq(current_freq*100, SI5351_CLK0); 
     old_freq = current_freq;
     Refresh_Display();
